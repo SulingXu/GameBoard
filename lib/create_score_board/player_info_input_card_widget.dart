@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:game_board/styles.dart';
 
 class PlayerInfoInputCardWidget extends StatefulWidget {
   PlayerInfoInputCardWidget({Key? key}) : super(key: key);
@@ -24,7 +23,7 @@ class _PlayerInfoInputCardWidgetState extends State<PlayerInfoInputCardWidget> {
   final String _gameDetailsPrefix = 'Game details';
   final String _firstPlayerDetailsPrefix = 'Player 1 details';
   final String _secondPlayerDetailsPrefix = 'Player 2 details';
-  final String _startGameButtonTxt = 'Start game';
+  final String _startGameButtonTxt = 'Start Game';
 
   Widget textFormField(TextEditingController controller, String labelTxt, String emptyInputAlert) {
     return TextFormField(
@@ -42,7 +41,7 @@ class _PlayerInfoInputCardWidgetState extends State<PlayerInfoInputCardWidget> {
     );
   }
 
-  Widget inputPrefixAndRow(//widget of two rows including hintprefix and input text row
+  Widget inputPrefixAndRow(
       String detailsPrefix,
       double paddingWidth,
       double paddingHeight,
@@ -60,7 +59,12 @@ class _PlayerInfoInputCardWidgetState extends State<PlayerInfoInputCardWidget> {
               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: paddingWidth, vertical: paddingHeight),
-                child: Styles.text(detailsPrefix, FontWeight.normal, Styles.largeFontSize, Colors.black),
+                child: Text(
+                  detailsPrefix,
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
@@ -92,8 +96,8 @@ class _PlayerInfoInputCardWidgetState extends State<PlayerInfoInputCardWidget> {
     final double _cardHeight = _deviceHeight * 0.85;
     final double _inputLineWidth = _deviceWidth * 0.3;
     final double _columnsInputIntervalWidth = _deviceWidth * 0.008;
-    final double _rowsInputSmallIntervalHeight = _deviceHeight * 0.025;
-    final double _rowsInputLargeIntervalHeight = _deviceHeight * 0.055;
+    final double _rowsInputLargeIntervalHeight = _deviceWidth * 0.055;
+    final double _rowsInputSmallIntervalHeight = _deviceWidth * 0.025;
     final double _cardHorizontalPadding = _deviceWidth * 0.042;
     final double _cardVerticalPadding = _deviceHeight * 0.0005;
 
@@ -102,15 +106,18 @@ class _PlayerInfoInputCardWidgetState extends State<PlayerInfoInputCardWidget> {
         height: _cardHeight,
         child: Card(
             semanticContainer: true,
-            shape: Styles.borderRadius(Styles.smallRadiusSize),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
             color: Colors.white,
+            elevation: 4.0,
             child: Align(
                 alignment: Alignment.topLeft,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     SizedBox(height: _rowsInputLargeIntervalHeight),
-                    inputPrefixAndRow(//game details
+                    inputPrefixAndRow(
                         _gameDetailsPrefix,
                         _cardHorizontalPadding,
                         _cardVerticalPadding,
@@ -122,7 +129,7 @@ class _PlayerInfoInputCardWidgetState extends State<PlayerInfoInputCardWidget> {
                         _raceToInputLabelTxt,
                         _emptyInputAlertTxt),
                     SizedBox(height: _rowsInputLargeIntervalHeight),
-                    inputPrefixAndRow(//player 1 details
+                    inputPrefixAndRow(
                         _firstPlayerDetailsPrefix,
                         _cardHorizontalPadding,
                         _cardVerticalPadding,
@@ -134,7 +141,7 @@ class _PlayerInfoInputCardWidgetState extends State<PlayerInfoInputCardWidget> {
                         _firstPlayerHandicapLabelTxt,
                         _emptyInputAlertTxt),
                     SizedBox(height: _rowsInputSmallIntervalHeight),
-                    inputPrefixAndRow(//player 2 details
+                    inputPrefixAndRow(
                         _secondPlayerDetailsPrefix,
                         _cardHorizontalPadding,
                         _cardVerticalPadding,
@@ -146,21 +153,12 @@ class _PlayerInfoInputCardWidgetState extends State<PlayerInfoInputCardWidget> {
                         _secondPlayerHandicapLabelTxt,
                         _emptyInputAlertTxt),
                     SizedBox(height: _rowsInputSmallIntervalHeight),
-                    Padding(//start game button
-                      padding: EdgeInsets.symmetric(
-                          horizontal: _cardHorizontalPadding, vertical: _cardVerticalPadding),
-                      child: Align(
-                        alignment: Alignment.bottomRight,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: Padding(
-                            padding: Styles.paddingInButton,
-                            child: Styles.text(_startGameButtonTxt, FontWeight.bold, Styles.middleFontSize, Colors.black)
-                          ),
-                          style: Styles.starGameButtonStyle,
-                        ),
-                      ),
-                    ),
+                    // ElevatedButton(onPressed: null, child: Text(
+                    //   _startGameButtonTxt,
+                    //   style: TextStyle(
+                    //     fontSize: 20,
+                    //   ),
+                    // ),)
                   ],
                 )
             )
